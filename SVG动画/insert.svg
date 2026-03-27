@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <defs>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <filter id="badge-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
+        </filter>
+    </defs>
+
+    <style>
+        /* 基础样式定义 */
+        .bg { fill: transparent; }
+        .text-code { font-family: 'Fira Code', 'Consolas', monospace; font-size: 24px; }
+        .bracket { font-family: 'Fira Code', 'Consolas', monospace; font-size: 90px; fill: #ABB2BF; font-weight: 300; }
+        .comma { font-family: 'Fira Code', 'Consolas', monospace; font-size: 50px; fill: #ABB2BF; }
+        .box-rect { rx: 16; ry: 16; stroke-width: 2; stroke: rgba(255,255,255,0.05); }
+        .box-text { font-family: 'Fira Code', 'Consolas', monospace; font-size: 42px; font-weight: bold; fill: #1E2227; text-anchor: middle; }
+
+        /* 动画关键帧 - 腾出空间 */
+        @keyframes shiftBox2 {
+            0%, 15% { transform: translate(300px, 140px); }
+            25%, 85% { transform: translate(410px, 140px); }
+            95%, 100% { transform: translate(300px, 140px); }
+        }
+        @keyframes shiftBox3 {
+            0%, 15% { transform: translate(410px, 140px); }
+            25%, 85% { transform: translate(520px, 140px); }
+            95%, 100% { transform: translate(410px, 140px); }
+        }
+        @keyframes shiftComma {
+            0%, 15% { transform: translateX(387px); }
+            25%, 85% { transform: translateX(497px); }
+            95%, 100% { transform: translateX(387px); }
+        }
+        @keyframes bracketMove {
+            0%, 15% { transform: translateX(520px); }
+            25%, 85% { transform: translateX(630px); }
+            95%, 100% { transform: translateX(520px); }
+        }
+        
+        /* 动画关键帧 - 新元素进入 */
+        @keyframes commaFade {
+            0%, 20% { opacity: 0; }
+            25%, 85% { opacity: 1; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes newBoxAnim {
+            0%, 10% { opacity: 0; transform: translate(300px, 0px) scale(0.8); }
+            15%, 30% { opacity: 1; transform: translate(300px, 40px) scale(0.9); } /* 停顿悬浮，等待右侧元素移开 */
+            40%, 85% { opacity: 1; transform: translate(300px, 140px) scale(1); }  /* 落入索引 1 的位置 */
+            95%, 100% { opacity: 0; transform: translate(300px, 140px) scale(0.8); }
+        }
+
+        /* 动画关键帧 - 代码高亮 */
+        @keyframes highlightMethod {
+            0%, 15% { fill: #61AFEF; filter: none; }
+            25%, 85% { fill: #F5A623; filter: url(#glow); text-shadow: 0 0 10px rgba(198,120,221,0.5); }
+            95%, 100% { fill: #61AFEF; filter: none; }
+        }
+        @keyframes highlightParam {
+            0%, 25% { fill: #D19A66; }
+            35%, 85% { fill: #D19A66; font-weight: bold; }
+            95%, 100% { fill: #D19A66; }
+        }
+
+        /* 动画类应用 */
+        .anim-bracket { animation: bracketMove 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .anim-shift-box2 { animation: shiftBox2 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .anim-shift-box3 { animation: shiftBox3 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .anim-shift-comma { animation: shiftComma 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .anim-comma-fade { animation: commaFade 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .anim-new-box { animation: newBoxAnim 5s infinite cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .anim-method { animation: highlightMethod 5s infinite; }
+        .anim-param { animation: highlightParam 5s infinite; }
+    </style>
+
+    <rect width="100%" height="100%" rx="20" class="bg"/>
+
+    <text x="400" y="280" class="text-code" text-anchor="middle">
+        <tspan fill="#E06C75">列表</tspan>
+        <tspan fill="#ABB2BF">.</tspan>
+        <tspan class="anim-method">insert</tspan>
+        <tspan fill="#ABB2BF">(</tspan>
+        <tspan fill="#D19A66">1</tspan>
+        <tspan fill="#ABB2BF">, </tspan>
+        <tspan class="anim-param">4</tspan>
+        <tspan fill="#ABB2BF">)</tspan>
+    </text>
+
+    <g>
+        <text x="140" y="208" class="bracket">[</text>
+
+        <g transform="translate(190, 140)">
+            <rect width="90" height="90" fill="#61AFEF" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">1</text>
+        </g>
+        <text x="277" y="215" class="comma">,</text>
+
+        <g class="anim-shift-box2">
+            <rect width="90" height="90" fill="#61AFEF" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">2</text>
+        </g>
+        <text y="215" class="comma anim-shift-comma">,</text>
+
+        <g class="anim-shift-box3">
+            <rect width="90" height="90" fill="#61AFEF" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">3</text>
+        </g>
+
+        <text y="208" class="bracket anim-bracket">]</text>
+
+        <text x="387" y="215" class="comma anim-comma-fade">,</text>
+
+        <g class="anim-new-box">
+            <rect width="90" height="90" fill="#F5A623" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">4</text>
+            <circle cx="90" cy="0" r="14" fill="#E5C07B" filter="url(#badge-shadow)"/>
+            <text x="90" y="0" dy="0.35em" font-family="monospace" font-size="20" font-weight="bold" fill="#282C34" text-anchor="middle">+</text>
+        </g>
+    </g>
+</svg>

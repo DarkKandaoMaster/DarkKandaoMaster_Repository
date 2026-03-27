@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <defs>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <filter id="badge-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
+        </filter>
+    </defs>
+
+    <style>
+        /* 基础样式定义 */
+        .bg { fill: transparent; }
+        .text-code { font-family: 'Fira Code', 'Consolas', monospace; font-size: 24px; }
+        .bracket { font-family: 'Fira Code', 'Consolas', monospace; font-size: 90px; fill: #ABB2BF; font-weight: 300; }
+        .comma { font-family: 'Fira Code', 'Consolas', monospace; font-size: 50px; fill: #ABB2BF; }
+        .box-rect { rx: 16; ry: 16; stroke-width: 2; stroke: rgba(255,255,255,0.05); }
+        .box-text { font-family: 'Fira Code', 'Consolas', monospace; font-size: 42px; font-weight: bold; fill: #1E2227; text-anchor: middle; }
+
+        /* 动画关键帧 - 针对 clear 方法的清空逻辑 */
+        @keyframes bracketMove {
+            0%, 25% { transform: translateX(630px); }
+            35%, 75% { transform: translateX(180px); } /* 深度闭合，贴近左括号 */
+            85%, 100% { transform: translateX(630px); }
+        }
+        
+        @keyframes commaFade {
+            0%, 25% { opacity: 1; }
+            30%, 75% { opacity: 0; }
+            85%, 100% { opacity: 1; }
+        }
+
+        @keyframes clearBoxAnim {
+            0%, 25% { opacity: 1; transform: scale(1) translateY(0); }
+            35%, 75% { opacity: 0; transform: scale(0.5) translateY(30px); } /* 全体缩小并向下掉落消失 */
+            85%, 100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes clearRectColor {
+            0%, 15% { fill: #61AFEF; }
+            20%, 40% { fill: #E06C75; } /* 全体变红预警 */
+            41%, 100% { fill: #61AFEF; } 
+        }
+
+        @keyframes badgeAnim {
+            0%, 15% { opacity: 0; transform: scale(0); }
+            20%, 30% { opacity: 1; transform: scale(1); } /* 显示减号 */
+            35%, 100% { opacity: 0; transform: scale(0); } /* 随方块一起消失 */
+        }
+
+        @keyframes highlightMethod {
+            0%, 15% { fill: #61AFEF; filter: none; text-shadow: none; }
+            20%, 30% { fill: #E06C75; filter: url(#glow); text-shadow: 0 0 10px rgba(224,108,117,0.5); }
+            35%, 100% { fill: #61AFEF; filter: none; text-shadow: none; }
+        }
+
+        /* 动画类应用 */
+        .anim-bracket { animation: bracketMove 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .anim-comma { animation: commaFade 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .anim-clear-box { animation: clearBoxAnim 5s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-origin: 45px 45px; }
+        .anim-clear-color { animation: clearRectColor 5s infinite; }
+        .anim-badge { animation: badgeAnim 5s infinite; transform-origin: 90px 0px; }
+        .anim-method { animation: highlightMethod 5s infinite; }
+    </style>
+
+    <rect width="100%" height="100%" rx="20" class="bg"/>
+
+    <text x="400" y="280" class="text-code" text-anchor="middle">
+        <tspan fill="#E06C75">列表</tspan>
+        <tspan fill="#ABB2BF">.</tspan>
+        <tspan class="anim-method">clear</tspan>
+        <tspan fill="#ABB2BF">()</tspan>
+    </text>
+
+    <g>
+        <text x="140" y="208" class="bracket">[</text>
+
+        <text y="208" class="bracket anim-bracket">]</text>
+
+        <text x="277" y="215" class="comma anim-comma">,</text>
+        <text x="387" y="215" class="comma anim-comma">,</text>
+        <text x="497" y="215" class="comma anim-comma">,</text>
+
+        <g transform="translate(190, 140)">
+            <g class="anim-clear-box">
+                <rect width="90" height="90" class="box-rect anim-clear-color"/>
+                <text x="45" y="45" dy="0.35em" class="box-text">1</text>
+                <g class="anim-badge">
+                    <circle cx="90" cy="0" r="14" fill="#E06C75" filter="url(#badge-shadow)"/>
+                    <text x="90" y="0" dy="0.35em" font-family="monospace" font-size="20" font-weight="bold" fill="#282C34" text-anchor="middle">-</text>
+                </g>
+            </g>
+        </g>
+        
+        <g transform="translate(300, 140)">
+            <g class="anim-clear-box">
+                <rect width="90" height="90" class="box-rect anim-clear-color"/>
+                <text x="45" y="45" dy="0.35em" class="box-text">2</text>
+                <g class="anim-badge">
+                    <circle cx="90" cy="0" r="14" fill="#E06C75" filter="url(#badge-shadow)"/>
+                    <text x="90" y="0" dy="0.35em" font-family="monospace" font-size="20" font-weight="bold" fill="#282C34" text-anchor="middle">-</text>
+                </g>
+            </g>
+        </g>
+        
+        <g transform="translate(410, 140)">
+            <g class="anim-clear-box">
+                <rect width="90" height="90" class="box-rect anim-clear-color"/>
+                <text x="45" y="45" dy="0.35em" class="box-text">3</text>
+                <g class="anim-badge">
+                    <circle cx="90" cy="0" r="14" fill="#E06C75" filter="url(#badge-shadow)"/>
+                    <text x="90" y="0" dy="0.35em" font-family="monospace" font-size="20" font-weight="bold" fill="#282C34" text-anchor="middle">-</text>
+                </g>
+            </g>
+        </g>
+        
+        <g transform="translate(520, 140)">
+            <g class="anim-clear-box">
+                <rect width="90" height="90" class="box-rect anim-clear-color"/>
+                <text x="45" y="45" dy="0.35em" class="box-text">4</text>
+                <g class="anim-badge">
+                    <circle cx="90" cy="0" r="14" fill="#E06C75" filter="url(#badge-shadow)"/>
+                    <text x="90" y="0" dy="0.35em" font-family="monospace" font-size="20" font-weight="bold" fill="#282C34" text-anchor="middle">-</text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

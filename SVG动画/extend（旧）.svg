@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <defs>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <filter id="badge-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
+        </filter>
+    </defs>
+
+    <style>
+        /* 基础样式定义 */
+        .bg { fill: transparent; }
+        .text-code { font-family: 'Fira Code', 'Consolas', monospace; font-size: 24px; }
+        .bracket { font-family: 'Fira Code', 'Consolas', monospace; font-size: 90px; fill: #ABB2BF; font-weight: 300; }
+        .comma { font-family: 'Fira Code', 'Consolas', monospace; font-size: 50px; fill: #ABB2BF; }
+        .box-rect { rx: 16; ry: 16; stroke-width: 2; stroke: rgba(255,255,255,0.05); }
+        .box-text { font-family: 'Fira Code', 'Consolas', monospace; font-size: 42px; font-weight: bold; fill: #1E2227; text-anchor: middle; }
+
+        /* 动画关键帧 - 周期设定为7秒，让顺序动作更加从容清晰 */
+        /* 上方[4, 5]容器的显示与消失：模拟拆解整体 */
+        @keyframes topListFade {
+            0%, 10% { opacity: 0; }
+            15%, 30% { opacity: 1; }
+            35%, 100% { opacity: 0; }
+        }
+
+        /* 第一个新元素(4)的下落动画 */
+        @keyframes newBoxAnim1 {
+            0%, 10% { opacity: 0; transform: translate(520px, 40px) scale(0.9); }
+            15%, 35% { opacity: 1; transform: translate(520px, 40px) scale(0.9); } /* 停留在上方 */
+            45%, 85% { opacity: 1; transform: translate(520px, 140px) scale(1); }  /* 完成下落 */
+            90%, 100% { opacity: 0; transform: translate(520px, 140px) scale(0.9); }
+        }
+
+        /* 第二个新元素(5)的下落动画：比元素4晚一步 */
+        @keyframes newBoxAnim2 {
+            0%, 10% { opacity: 0; transform: translate(630px, 40px) scale(0.9); }
+            15%, 50% { opacity: 1; transform: translate(630px, 40px) scale(0.9); } /* 等待元素4先下落 */
+            60%, 85% { opacity: 1; transform: translate(630px, 140px) scale(1); }  /* 完成下落 */
+            90%, 100% { opacity: 0; transform: translate(630px, 140px) scale(0.9); }
+        }
+
+        /* 目标列表右括号的逐级后移 */
+        @keyframes bracketMove {
+            0%, 35% { transform: translateX(520px); }
+            45%, 50% { transform: translateX(630px); } /* 容纳元素4 */
+            60%, 85% { transform: translateX(740px); } /* 容纳元素5 */
+            90%, 100% { transform: translateX(520px); }
+        }
+
+        /* 元素4前的逗号 */
+        @keyframes commaFade1 {
+            0%, 40% { opacity: 0; }
+            45%, 85% { opacity: 1; }
+            90%, 100% { opacity: 0; }
+        }
+
+        /* 元素5前的逗号 */
+        @keyframes commaFade2 {
+            0%, 55% { opacity: 0; }
+            60%, 85% { opacity: 1; }
+            90%, 100% { opacity: 0; }
+        }
+
+        @keyframes highlightMethod {
+            0%, 10% { fill: #61AFEF; filter: none; }
+            45%, 85% { fill: #C678DD; filter: url(#glow); text-shadow: 0 0 10px rgba(198,120,221,0.5); }
+            90%, 100% { fill: #61AFEF; filter: none; }
+        }
+        
+        @keyframes highlightParam {
+            0%, 10% { fill: #D19A66; font-weight: normal;}
+            15%, 85% { fill: #D19A66; font-weight: bold; }
+            90%, 100% { fill: #D19A66; font-weight: normal;}
+        }
+
+        /* 动画类应用 */
+        .anim-top-list { animation: topListFade 7s infinite ease-in-out; }
+        .anim-bracket { animation: bracketMove 7s infinite ease-in-out; }
+        .anim-comma-1 { animation: commaFade1 7s infinite ease-in-out; }
+        .anim-comma-2 { animation: commaFade2 7s infinite ease-in-out; }
+        .anim-new-box-1 { animation: newBoxAnim1 7s infinite ease-in-out; }
+        .anim-new-box-2 { animation: newBoxAnim2 7s infinite ease-in-out; }
+        .anim-method { animation: highlightMethod 7s infinite ease-in-out; }
+        .anim-param { animation: highlightParam 7s infinite ease-in-out; }
+    </style>
+
+    <rect width="100%" height="100%" rx="20" class="bg"/>
+
+    <text x="400" y="280" class="text-code" text-anchor="middle">
+        <tspan fill="#E06C75">列表</tspan>
+        <tspan fill="#ABB2BF">.</tspan>
+        <tspan class="anim-method">extend</tspan>
+        <tspan fill="#ABB2BF">(</tspan>
+        <tspan class="anim-param">[4,5]</tspan>
+        <tspan fill="#ABB2BF">)</tspan>
+    </text>
+
+    <g>
+        <text x="140" y="208" class="bracket">[</text>
+
+        <text y="208" class="bracket anim-bracket">]</text>
+
+        <text x="277" y="215" class="comma">,</text>
+        <text x="387" y="215" class="comma">,</text>
+        <text x="497" y="215" class="comma anim-comma-1">,</text>
+        <text x="607" y="215" class="comma anim-comma-2">,</text>
+
+        <g transform="translate(190, 140)">
+            <rect width="90" height="90" fill="#61AFEF" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">1</text>
+        </g>
+        <g transform="translate(300, 140)">
+            <rect width="90" height="90" fill="#61AFEF" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">2</text>
+        </g>
+        <g transform="translate(410, 140)">
+            <rect width="90" height="90" fill="#61AFEF" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">3</text>
+        </g>
+        
+        <g class="anim-top-list">
+            <text x="470" y="108" class="bracket">[</text>
+            <text x="607" y="115" class="comma">,</text>
+            <text x="740" y="108" class="bracket">]</text>
+        </g>
+
+        <g class="anim-new-box-1">
+            <rect width="90" height="90" fill="#C678DD" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">4</text>
+            <circle cx="90" cy="0" r="14" fill="#E5C07B" filter="url(#badge-shadow)"/>
+            <text x="90" y="0" dy="0.35em" font-family="monospace" font-size="20" font-weight="bold" fill="#282C34" text-anchor="middle">+</text>
+        </g>
+
+        <g class="anim-new-box-2">
+            <rect width="90" height="90" fill="#C678DD" class="box-rect"/>
+            <text x="45" y="45" dy="0.35em" class="box-text">5</text>
+            <circle cx="90" cy="0" r="14" fill="#E5C07B" filter="url(#badge-shadow)"/>
+            <text x="90" y="0" dy="0.35em" font-family="monospace" font-size="20" font-weight="bold" fill="#282C34" text-anchor="middle">+</text>
+        </g>
+    </g>
+</svg>

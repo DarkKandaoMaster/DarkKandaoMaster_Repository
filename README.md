@@ -1,2 +1,2 @@
-# DarkKandaoMaster-Repository
-|ω•´）
+# DarkKandaoMaster_Repository
+用来存放我做过的一些东西
