@@ -10,19 +10,19 @@
 }
 
 ^Right::Send("{End}")
-^+Right::Send{
+^+Right::{
     Send("{Shift down}")
     Send("{End}")
 }
 
 ^Up::Send("{PgUp}")
-^+Up::Send{
+^+Up::{
     Send("{Shift down}")
     Send("{PgUp}")
 }
 
 ^Down::Send("{PgDn}")
-^+Down::Send{
+^+Down::{
     Send("{Shift down}")
     Send("{PgDn}")
 }
