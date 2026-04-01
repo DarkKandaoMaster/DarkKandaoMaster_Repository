@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0 ;我的AutoHotkey是2.0版本的，v2和v1语法不同，所以写上这么一句，如果使用v1解释器运行该脚本那么会报错
+#NoTrayIcon ;运行该脚本时不显示托盘图标
 #HotIf WinActive("ahk_class WindowsForms10.Window.8.app.0.bf7771_r3_ad1 ahk_exe ImageGlass.exe")
 
 1::CreateImageShortcut("D:\Kandao\Pictures\[ 相册 ]\[ 待收藏 ]") ;按下1触发CreateImageShortcut函数
