@@ -30,4 +30,4 @@ Loop Files,targetDir "\*","FR"{ ;使用Loop Files遍历指定路径下的所有�
 MsgBox("所有操作已完成！")
 
 
-;【【【【【要不在MsgBox里加个标题？
+;【【【【【要不在MsgBox里加个标题？不需要
