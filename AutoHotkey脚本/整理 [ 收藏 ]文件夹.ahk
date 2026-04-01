@@ -26,8 +26,15 @@ Loop Files,targetDir "\*","FR"{ ;使用Loop Files遍历指定路径下的所有�
     FileSetTime modifyTime,A_LoopFilePath,"M" ;将刚刚获取到的修改时间，设置为该快捷方式文件的修改时间
     FileSetTime accessTime,A_LoopFilePath,"A" ;将刚刚获取到的访问时间，设置为该快捷方式文件的访问时间
 }
-
 MsgBox("所有操作已完成！")
 
 
-;【【【【【要不在MsgBox里加个标题？不需要
+
+;这版本的ImageGlass有一个bug，就是在
+;D:\Kandao\Pictures\[ 相册 ]\[ 收藏 ]
+;直接打开快捷方式，显示的图片好像是按名称排序的
+;很不方便。所以有一个解决办法是在另一个文件资源管理器窗口打开
+;D:\Kandao\Pictures\[ 相册 ]\1·荧
+;然后再通过快捷方式打开文件，就是按日期排序了
+
+;弄明白一下某些快捷方式的排序方式到底是怎样的，为什么日期都同步了，却还是不能正常排序
