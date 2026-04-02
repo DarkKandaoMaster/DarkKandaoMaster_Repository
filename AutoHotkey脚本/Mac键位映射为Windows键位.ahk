@@ -36,4 +36,4 @@ RWin::RAlt ; 右Win 映射为 右Alt （如果有右侧按键的话）
 LAlt::LWin
 RAlt::RWin
 
-;还有Shift+Win？检测到Shift+Win，松开Shift，发送个PrtSc？
+;还有一个特性：运行该脚本时，在键盘上输入Win+PrtSc，等效Shift+Win+3打开记事本。额...这是为什么？要搞吗？之后再看看吧。
