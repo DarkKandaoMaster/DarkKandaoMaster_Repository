@@ -35,3 +35,5 @@ RWin::RAlt ; 右Win 映射为 右Alt （如果有右侧按键的话）
 
 LAlt::LWin
 RAlt::RWin
+
+;还有Shift+Win？检测到Shift+Win，松开Shift，发送个PrtSc？
