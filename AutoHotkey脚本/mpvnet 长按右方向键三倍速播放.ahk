@@ -1,4 +1,4 @@
-#Requires AutoHotkey v2.0 ;我的AutoHotkey Dash是2.0版本的，v2和v1语法不同，所以写上这么一句
+#Requires AutoHotkey v2.0 ;我的AutoHotkey是2.0版本的，v2和v1语法不同，所以写上这么一句，如果使用v1解释器运行该脚本那么会报错
 #NoTrayIcon ;运行该脚本时不显示托盘图标
 #HotIf WinActive("ahk_class WindowsForms10.Window.8.app.0.3455ce_r7_ad1 ahk_exe mpvnet.exe")
 
