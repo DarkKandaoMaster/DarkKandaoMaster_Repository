@@ -4,6 +4,8 @@
 ;把 Ctrl+左右上下方向键 映射为 Home/End/PgUp/PgDn 
 ;把 Win/Alt 映射为 Alt/Win 
 
+
+
 #Requires AutoHotkey v2.0 ;我的AutoHotkey是2.0版本的，v2和v1语法不同，所以写上这么一句，如果使用v1解释器运行该脚本那么会报错
 
 ^Left::Send("{Home}") ; Ctrl+左方向键 映射为 Home 
