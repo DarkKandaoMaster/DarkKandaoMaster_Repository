@@ -1,6 +1,6 @@
 ;很多galgame是用回车键过剧情的，而不是空格键。
 ;对此我的解决办法是：
-;把 空格键 映射为 回车键 
+;把 空格键、下方向键、右方向键 映射为 回车键 
 
 
 
@@ -9,4 +9,14 @@
 Space::{
     Send("{Enter}")
     KeyWait("Space") ;阻塞脚本直到物理松开空格键。这样可以防止不小心长按空格于是快速过剧情
+}
+
+Down::{
+    Send("{Enter}")
+    KeyWait("Down")
+}
+
+Right::{
+    Send("{Enter}")
+    KeyWait("Right")
 }
