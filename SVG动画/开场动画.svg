@@ -11,8 +11,8 @@
       .container {
         /* 停留2秒后，花费1.5秒平滑向左滑动 */
         animation: slideLeft 1.5s cubic-bezier(0.25, 1, 0.3, 1) 2s forwards;
-        /* 初始向右偏移 460px，让 InferenceDeck 完美居中于 900 的位置 */
-        transform: translateX(460px);
+        /* 初始向右偏移 340px，让 OmicsInferenceDeck 完美居中于 900 的位置 */
+        transform: translateX(340px);
       }
 
       .title {
@@ -41,7 +41,7 @@
       }
 
       @keyframes slideLeft {
-        from { transform: translateX(460px); }
+        from { transform: translateX(340px); }
         to { transform: translateX(0px); } /* 最终归零，让整句话居中 */
       }
 
@@ -60,7 +60,7 @@
   <rect width="100%" height="100%" class="bg" />
 
   <g class="container">
-    <text class="title" x="275" y="560">InferenceDeck</text>
-    <text class="subtitle" x="770" y="555">, 一个评估多组学癌症亚型分型方法的平台</text>
+    <text class="title" x="250" y="560">OmicsInferenceDeck</text>
+    <text class="subtitle" x="950" y="555">, 多组学癌症亚型识别算法评估平台</text>
   </g>
 </svg>
