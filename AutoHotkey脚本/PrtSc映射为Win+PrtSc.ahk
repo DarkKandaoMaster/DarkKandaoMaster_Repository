@@ -5,5 +5,6 @@
 
 
 #Requires AutoHotkey v2.0
+#NoTrayIcon ;运行该脚本时不显示托盘图标
 
 *PrintScreen::Send("#{PrintScreen}") ;星号*表示无视修饰键的状态
