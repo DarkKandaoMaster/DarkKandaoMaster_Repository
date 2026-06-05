@@ -6,5 +6,6 @@
 
 #Requires AutoHotkey v2.0
 #NoTrayIcon ;运行该脚本时不显示托盘图标
+A_MenuMaskKey:="vkE8" ;禁用AHK的掩护键，防止物理按下Win+PrtSc时还会额外按下Ctrl：把AHK的内置变量A_MenuMaskKey（默认值为Ctrl）改为未分配的虚拟键vkE8，发送它无任何效果，等同于禁用掩护键
 
 *PrintScreen::Send("#{PrintScreen}") ;星号*表示无视修饰键的状态
