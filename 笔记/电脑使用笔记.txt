@@ -29,10 +29,21 @@ Ctrl+Y		恢复
 这两个快捷键在大部分文本编辑器上都有用。不过在Adobe软件里好像都是
 Ctrl+Shift+Z	恢复
 
-最近发现了这几个快捷键：
-Shift+Win+1	打开文件资源管理器
-Shift+Win+2	打开edge
-Shift+Win+3	打开记事本
+--------------------------------------------------------------
+文件资源管理器的实用快捷键：
+
+选中某个文件夹+回车键	进入该文件夹
+
+Ctrl+鼠标左键双击，或者回车打开某个文件夹	在新窗口打开文件夹
+
+退格键				返回上一个文件夹
+
+使用Ctrl、Shift选中文件就不说了
+
+Shift+Win+1	打开任务栏里第一个图标
+Shift+Win+2	打开任务栏里第二个图标
+Shift+Win+3	打开任务栏里第三个图标
+以此类推
 
 --------------------------------------------------------------
 Microsoft Edge的实用快捷键：
@@ -105,6 +116,9 @@ Alt+Z					开启/关闭折行
 Ctrl+Shift+T				重新打开关闭的标签页
 
 Ctrl+K（然后松开Ctrl）+O	复制到“新窗口”中
+
+重置编辑器字号：
+按F1或Ctrl+Shift+P打开命令面板，输入“Reset Editor Font Size”，选择重置编辑器字号。
 
 --------------------------------------------------------------
 Snipaste的实用快捷键：
@@ -501,6 +515,26 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.m
 另外一个方法就是假程序替换法：新建一个txt文件，重命名为.exe文件，把想要变回白纸图标的文件的默认打开方式改为这个.exe文件，然后把这个.exe文件删除，重启文件资源管理器，然后就能发现变回白纸图标了。
 
 
+关闭Microsoft Word动画：
+打开控制面板，搜索“动画”，找到并开启 关闭不必要的动画 这个选项。
+或者也可以依次打开：控制面板-所有控制面板项-轻松使用设置中心-使用没有显示的计算机，开启 关闭不必要的动画 这个选项。
+但是这样的话很多Windows动画也会被关闭。
+
+找到只关闭Microsoft Word动画，不关闭Windows动画的方法了：
+打开注册表，来到：
+计算机\HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Common\Graphics
+如果该路径不存在，那么来到：
+计算机\HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Common
+右键Common→新建→项，命名为“Graphics”。
+来到这个Graphics，右键右侧空白处→新建DWORD (32 位)值，命名为“DisableAnimations”。
+双击它，把数值数据设为1。
+重启Word生效。
+
+
+把Word公式输出为最高画质图片的方法：
+复制公式，在Word里随便找一个地方，粘贴，在粘贴选项那里选图片。然后右键图片保存
+
+
 
 
 
@@ -654,6 +688,9 @@ AutoHotkey Dash匹配窗口：
 所以如果你想把Steam的 国家/地区 永久改成某个地区，你就可以用上面这个方法。不过这个方法有CD，三个月才能改一次。
 
 
+vscode推荐安装在默认路径，也就是C盘。因为哪怕你把它安装在D盘，用户配置、插件、缓存还是会在C盘。
+
+
 vscode 1.103.0这个版本的更新，居然把右键菜单给整没了。问了下AI，发现甚至有用户反馈：尝试重新安装后，右键菜单仍未恢复，回退到1.102.3才成功恢复。
 哇没了这个右键菜单是真不方便...于是我又问了下AI，发现如果一开始安装时没勾选添加到右键菜单，那么官方的恢复右键菜单的方法就是重新安装一遍。所以这里放一个把已安装的vscode回退到1.102.3版本的方法：
 1.来到VS Code 官方更新日志页面：https://code.visualstudio.com/updates/v1_102#_notable-fixes
@@ -666,8 +703,9 @@ vscode 1.103.0这个版本的更新，居然把右键菜单给整没了。问了
 4.然后就显示正在安装了。如果显示“错误代码 5”那大概率就是你没以管理员身份运行，点 关闭安装程序 ，然后再来一遍就行了
 5.然后赶紧断网，并关闭自动更新：在vscode里打开设置，搜索“Update”，找到 应用程序-更新 这一栏，把
 Update: Enable Windows Background Updates 取消勾选
-Update: Mode 选择 manual （这里选择none的话更新按钮都会消失，所以还是选择manual吧）
+Update: Mode 选择 none （这里选择none的话更新按钮都会消失，所以还是选择manual吧）（还是选择none吧，防止误触。具体原因见下面这条笔记）
 
+既然关闭vscode更新了，那么以后如果想要更新vscode，就不要通过 设置-检查更新 来更新。否则一旦你点了检查更新这个按钮，vscode就会在下次启动时更新，于是因为没有用管理员运行所以可能会出问题（比如操作注册表的时候）。按我上面说的从那个网址里下载安装包来进行更新吧。
 
 再放一个关闭vscode扩展自动更新的方法：
 在vscode里打开设置，搜索“extensions.autoUpdate”，把
@@ -682,6 +720,18 @@ Python，连续输入两个英文双引号，它会自动给你再输入一个�
 搜索Editor: Auto Closing Quotes，改成never
 取消折行的缩进：
 搜索Editor: Wrapping Indent，改成none
+让vscode普通启动时打开一个空的新界面，而不是恢复之前的窗口：
+在vscode设置里搜索restore windows，把“Window: Restore Windows”改成none
+允许通过Ctrl+滚轮缩放编辑器字体大小
+搜索设置“editor.mouseWheelZoom”，勾选
+允许通过Ctrl+滚轮缩放vscode终端字体大小
+搜索设置“terminal.integrated.mouseWheelZoom”，勾选
+
+
+安装cursor后要做的设置：
+把主题改成：Default Dark Modern
+把工具栏从水平改成垂直：https://blog.csdn.net/baidu_41651062/article/details/145701254
+打开 设置-vscode设置 ，把带警告的部分都修改一下
 
 
 关闭MySQL每天凌晨0点弹窗：
@@ -748,5 +798,35 @@ C:\Program Files (x86)\SogouInput\Components\* （注意这里的“保护的动
 然后是禁用服务。打开服务，找到并禁用：
 Kwallpaper Core Service
 于是可以发现点击 彻底粉碎文件 、 更换壁纸 等右键菜单项，完全没反应。这时就可以放心删除这些右键菜单项对应的注册表了。
+
+
+以后或许可以在这里记一个：
+默认情况下，WSL 的 Ubuntu 是占用 C 盘空间的，不是 D 盘。
+C:\Users\Kandao\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc
+这个文件夹就是你的 Ubuntu
+C:\Users\Kandao\AppData\Local\wsl\{1716fb16-5e7e-4b71-abbf-c66b286b9c80}
+这个文件夹里有 ext4.vhdx
+真正占空间的是这个文件
+它是一个“虚拟硬盘文件”
+Ubuntu 的所有文件（包括你装的 conda、代码、数据）全在里面
+方法1（推荐）：迁移整个 WSL 到 D 盘
+用命令：
+wsl --export Ubuntu ubuntu.tar
+wsl --unregister Ubuntu
+wsl --import Ubuntu D:\WSL\Ubuntu ubuntu.tar
+这样 Ubuntu 就完全在 D 盘了
+
+
+在WPS，阅读pdf文档时，页面切换的加载效果很烦人，鼠标滚轮滚动也很烦人。可以这么设置：
+随便打开一个pdf文档，左上角文件-设置，页面加载效果选 无 ，滚轮滚动速度改成单齿轮滚动指定高度 2 行。
+
+
+关闭Win11拖动窗口时屏幕顶部自动出现的快速布局（贴靠布局）功能：
+点进 设置-系统-多任务处理 ，点开 贴靠窗口 这个选项，把出现的5个选项都关掉。
+不建议直接关闭 贴靠窗口 选项。因为比如edge浏览器这种软件有一个很实用的操作：打开多个标签页的时候，把其中一个标签页拖拽下来，就能拖拽出一个新窗口。但如果直接关闭 贴靠窗口 选项，就拖拽不下来了。
+
+
+Word背景默认是带磨砂效果，也就是窗口半透明效果。这看得我有点不舒服，关闭该效果的方法：
+来到Windows设置→个性化→颜色，关闭“透明效果”
 
 
