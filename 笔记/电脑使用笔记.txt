@@ -48,7 +48,9 @@ Shift+Win+3	打开任务栏里第三个图标
 --------------------------------------------------------------
 Microsoft Edge的实用快捷键：
 
-Ctrl+R 或者 F5		刷新网页
+Ctrl+R			刷新网页
+
+Ctrl+F5			刷新网页，同时强制刷新浏览器缓存，使得例如吾爱破解头像得到更新
 
 Ctrl+Shift+T		重新打开关闭的标签页
 
@@ -533,6 +535,10 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.m
 
 把Word公式输出为最高画质图片的方法：
 复制公式，在Word里随便找一个地方，粘贴，在粘贴选项那里选图片。然后右键图片保存
+
+
+关闭office文件的只读模式：
+右键-属性，找到并关闭“只读”按钮
 
 
 
