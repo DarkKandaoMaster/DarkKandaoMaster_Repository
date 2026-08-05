@@ -32,6 +32,12 @@
     Send("{PgDn}")
 }
 
+;【【【【【来修bug！物理按下右Shift+Home键，实际触发的是左Shift键，也就是说就算物理抬起右Shift键，做Shift键也处于模拟按下的状态
+; *^Left::Send("{Blind}{Ctrl up}{Home}{Ctrl down}") ;原本我想用这份代码修bug，结果它自己就有一个bug：当你物理按下右Ctrl+左方向键时，左Ctrl键就会一直处于模拟按下的状态
+; *^Right::Send("{Blind}{Ctrl up}{End}{Ctrl down}")
+; *^Up::Send("{Blind}{Ctrl up}{PgUp}{Ctrl down}")
+; *^Down::Send("{Blind}{Ctrl up}{PgDn}{Ctrl down}")
+
 LWin::LAlt ; 左Win 映射为 左Alt 
 RWin::RAlt ; 右Win 映射为 右Alt （如果有右侧按键的话）
 
